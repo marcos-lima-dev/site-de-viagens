@@ -1,22 +1,35 @@
-import Header from '@/components/Header'
-import { Button } from '@/components/ui' // ← LIMPO!
+// App.tsx (atualizado)
+import Header from '@/components/Header';
+import HeroSection from '@/components/HeroSection';
+import SearchForm from '@/components/SearchForm';
+import AboutSection from '@/components/AboutSection';
+import DestinationsTabs from '@/components/DestinationsTabs';
+import RecommendedPlaces from '@/components/RecommendedPlaces'; // ← novo
+import { useState, useEffect } from 'react';
 
 function App() {
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => setIsScrolled(window.scrollY > 50);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const handleSearch = (data: any) => {
+    console.log('Search:', data);
+  };
+
   return (
-    <>
-      <Header />
-      <main className="pt-20 md:pt-0">
-        <div className="flex min-h-screen flex-col items-center justify-center gap-6 bg-gradient-to-br from-primary to-highlight p-8">
-          <h1 className="text-4xl md:text-5xl font-bold text-white text-center">
-            Header com Import Limpo!
-          </h1>
-          <Button size="lg" variant="secondary">
-            Testar Scroll
-          </Button>
-        </div>
-      </main>
-    </>
-  )
+    <div className="font-sans antialiased text-[#333] bg-white">
+      <Header isScrolled={isScrolled} />
+      <HeroSection />
+      <SearchForm onSubmit={handleSearch} />
+      <AboutSection />
+      <DestinationsTabs />
+      <RecommendedPlaces />
+    </div>
+  );
 }
 
-export default App
+export default App;
