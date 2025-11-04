@@ -1,52 +1,55 @@
 // src/components/RecommendedPlaces.tsx
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
+import { useTranslation } from '@/hooks/useTranslation';
 
 interface Place {
   id: number;
-  name: string;
+  nameKey: keyof typeof ptBR;
   location: string;
   price: string;
   image: string;
-  description: string;
+  descriptionKey: keyof typeof ptBR;
 }
 
-const places: Place[] = [
-  {
-    id: 1,
-    name: 'Asia Resort Hotel',
-    location: 'Singapore',
-    price: '$440',
-    image: 'https://placehold.co/270x180?text=Asia+Resort',
-    description: 'Sed egestas, odio nec bibendum mattis, quam odio hendrerit risus, eu varius eros lacus sit amet lectus. Donec blandit luctus dictum...',
-  },
-  {
-    id: 2,
-    name: 'Nullam Eget Est A Nisl',
-    location: 'Yangon, Myanmar',
-    price: '$450',
-    image: 'https://placehold.co/270x180?text=Yangon',
-    description: 'Sed egestas, odio nec bibendum mattis, quam odio hendrerit risus, eu varius eros lacus sit amet lectus. Donec blandit luctus dictum...',
-  },
-  {
-    id: 3,
-    name: 'Proin Interdum Ullamcorper',
-    location: 'Bangkok, Thailand',
-    price: '$460',
-    image: 'https://placehold.co/270x180?text=Bangkok',
-    description: 'Sed egestas, odio nec bibendum mattis, quam odio hendrerit risus, eu varius eros lacus sit amet lectus. Donec blandit luctus dictum...',
-  },
-  {
-    id: 4,
-    name: 'Lorem Ipsum Dolor Sit',
-    location: 'Vientiane, Laos',
-    price: '$470',
-    image: 'https://placehold.co/270x180?text=Vientiane',
-    description: 'Sed egestas, odio nec bibendum mattis, quam odio hendrerit risus, eu varius eros lacus sit amet lectus. Donec blandit luctus dictum...',
-  },
-];
-
 export default function RecommendedPlaces() {
+  const { t } = useTranslation();
+
+  const places: Place[] = [
+    {
+      id: 1,
+      nameKey: 'asiaResortHotel',
+      location: 'Singapura',
+      price: 'R$ 2.200',
+      image: 'https://placehold.co/270x180?text=Asia+Resort',
+      descriptionKey: 'placeDescription1',
+    },
+    {
+      id: 2,
+      nameKey: 'nullamEgetEst',
+      location: 'Yangon, Myanmar',
+      price: 'R$ 2.250',
+      image: 'https://placehold.co/270x180?text=Yangon',
+      descriptionKey: 'placeDescription2',
+    },
+    {
+      id: 3,
+      nameKey: 'proinInterdum',
+      location: 'Bangkok, Tailândia',
+      price: 'R$ 2.300',
+      image: 'https://placehold.co/270x180?text=Bangkok',
+      descriptionKey: 'placeDescription3',
+    },
+    {
+      id: 4,
+      nameKey: 'loremIpsumDolor',
+      location: 'Vientiane, Laos',
+      price: 'R$ 2.350',
+      image: 'https://placehold.co/270x180?text=Vientiane',
+      descriptionKey: 'placeDescription4',
+    },
+  ];
+
   return (
     <section id="recommended" className="py-12 bg-[#efefef]">
       <div className="container mx-auto px-4 max-w-[970px]">
@@ -60,7 +63,7 @@ export default function RecommendedPlaces() {
               <div className="md:w-[270px] flex-shrink-0">
                 <img
                   src={place.image}
-                  alt={place.name}
+                  alt={t(place.nameKey)}
                   className="w-full h-48 md:h-full object-cover"
                 />
               </div>
@@ -68,14 +71,14 @@ export default function RecommendedPlaces() {
               {/* Descrição */}
               <div className="flex-1 p-8 md:p-[30px] md:w-[500px] flex flex-col justify-between">
                 <div>
-                  <h3 className="text-xl font-bold text-[#333] mb-2">{place.name}</h3>
+                  <h3 className="text-xl font-bold text-[#333] mb-2">{t(place.nameKey)}</h3>
                   <p className="text-[#c66995] text-sm font-medium mb-4">{place.location}</p>
                   <p className="text-[#787676] text-sm leading-relaxed">
-                    {place.description}
+                    {t(place.descriptionKey)}
                   </p>
                 </div>
                 <Button className="mt-6 w-fit bg-[#69c6ba] hover:bg-[#c66995] text-white text-sm font-medium px-4 py-2">
-                  CONTINUE READING
+                  {t('continueReading')}
                 </Button>
               </div>
 
@@ -87,10 +90,10 @@ export default function RecommendedPlaces() {
           ))}
         </div>
 
-        {/* Botão "Show More" */}
+        {/* Botão "Mostrar Mais" */}
         <div className="text-center mt-12">
           <Button className="bg-[#69c6ba] hover:bg-[#c66995] text-white font-medium px-6 py-3">
-            SHOW MORE PLACES
+            {t('showMorePlaces')}
           </Button>
         </div>
       </div>

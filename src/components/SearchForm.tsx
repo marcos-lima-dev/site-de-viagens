@@ -5,27 +5,25 @@ import { z } from 'zod';
 import { MapPin, Bed, Users, Calendar } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Card } from '@/components/ui/card';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
+import { useTranslation } from '@/hooks/useTranslation';
 
-const formSchema = z.object({
-  destination: z.string().min(1, 'Destination is required'),
-  rooms: z.string(),
-  adults: z.string(),
-  children: z.string(),
-  checkIn: z.string().min(1, 'Check-in date is required'),
-  checkOut: z.string().min(1, 'Check-out date is required'),
-});
+export default function SearchForm() {
+  const { t } = useTranslation();
 
-type FormData = z.infer<typeof formSchema>;
+  const formSchema = z.object({
+    destination: z.string().min(1, t('chooseDestination') + ' é obrigatório'),
+    rooms: z.string(),
+    adults: z.string(),
+    children: z.string(),
+    checkIn: z.string().min(1, t('checkInDate') + ' é obrigatório'),
+    checkOut: z.string().min(1, t('checkOutDate') + ' é obrigatório'),
+  });
 
-interface SearchFormProps {
-  onSubmit?: (data: FormData) => void;
-}
+  type FormData = z.infer<typeof formSchema>;
 
-export default function SearchForm({ onSubmit }: SearchFormProps) {
   const form = useForm<FormData>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -39,7 +37,7 @@ export default function SearchForm({ onSubmit }: SearchFormProps) {
   });
 
   const handleSubmit = (data: FormData) => {
-    onSubmit?.(data);
+    console.log('Busca:', data);
   };
 
   return (
@@ -48,22 +46,22 @@ export default function SearchForm({ onSubmit }: SearchFormProps) {
         <Card className="max-w-[830px] mx-auto bg-[#f5f6f6] p-[25px_25px_15px] shadow-none border-0 animate-fade-in">
           <Form {...form}>
             <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-6">
-              {/* Row 1 */}
+              {/* Linha 1 */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {/* Destination */}
+                {/* Destino */}
                 <FormField
                   control={form.control}
                   name="destination"
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel className="text-[0.8rem] font-medium text-gray-700">
-                        Choose Your Destination
+                        {t('chooseDestination')}
                       </FormLabel>
                       <FormControl>
                         <div className="relative">
                           <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
                           <Input
-                            placeholder="Type your destination..."
+                            placeholder={t('destinationPlaceholder')}
                             className="h-[45px] pl-10 text-[0.8rem] placeholder:text-gray-400"
                             {...field}
                           />
@@ -74,7 +72,7 @@ export default function SearchForm({ onSubmit }: SearchFormProps) {
                   )}
                 />
 
-                {/* Rooms / Adults / Children */}
+                {/* Quartos / Adultos / Crianças */}
                 <div className="grid grid-cols-2 gap-4">
                   <FormField
                     control={form.control}
@@ -82,7 +80,7 @@ export default function SearchForm({ onSubmit }: SearchFormProps) {
                     render={({ field }) => (
                       <FormItem>
                         <FormLabel className="text-[0.8rem] font-medium text-gray-700">
-                          How many rooms?
+                          {t('howManyRooms')}
                         </FormLabel>
                         <FormControl>
                           <div className="relative">
@@ -92,9 +90,9 @@ export default function SearchForm({ onSubmit }: SearchFormProps) {
                                 <SelectValue />
                               </SelectTrigger>
                               <SelectContent>
-                                <SelectItem value="1">1 Room</SelectItem>
-                                <SelectItem value="2">2 Rooms</SelectItem>
-                                <SelectItem value="3">3 Rooms</SelectItem>
+                                <SelectItem value="1">1 {t('room')}</SelectItem>
+                                <SelectItem value="2">2 {t('rooms')}</SelectItem>
+                                <SelectItem value="3">3 {t('rooms')}</SelectItem>
                               </SelectContent>
                             </Select>
                           </div>
@@ -109,7 +107,9 @@ export default function SearchForm({ onSubmit }: SearchFormProps) {
                       name="adults"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel className="text-[0.8rem] font-medium text-gray-700">Adult</FormLabel>
+                          <FormLabel className="text-[0.8rem] font-medium text-gray-700">
+                            {t('adult')}
+                          </FormLabel>
                           <FormControl>
                             <div className="relative">
                               <Users className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
@@ -134,7 +134,9 @@ export default function SearchForm({ onSubmit }: SearchFormProps) {
                       name="children"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel className="text-[0.8rem] font-medium text-gray-700">Children</FormLabel>
+                          <FormLabel className="text-[0.8rem] font-medium text-gray-700">
+                            {t('children')}
+                          </FormLabel>
                           <FormControl>
                             <div className="relative">
                               <Users className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
@@ -157,14 +159,16 @@ export default function SearchForm({ onSubmit }: SearchFormProps) {
                 </div>
               </div>
 
-              {/* Row 2 */}
+              {/* Linha 2 */}
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <FormField
                   control={form.control}
                   name="checkIn"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="text-[0.8rem] font-medium text-gray-700">Check In Date</FormLabel>
+                      <FormLabel className="text-[0.8rem] font-medium text-gray-700">
+                        {t('checkInDate')}
+                      </FormLabel>
                       <FormControl>
                         <div className="relative">
                           <Calendar className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
@@ -181,7 +185,9 @@ export default function SearchForm({ onSubmit }: SearchFormProps) {
                   name="checkOut"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="text-[0.8rem] font-medium text-gray-700">Check Out Date</FormLabel>
+                      <FormLabel className="text-[0.8rem] font-medium text-gray-700">
+                        {t('checkOutDate')}
+                      </FormLabel>
                       <FormControl>
                         <div className="relative">
                           <Calendar className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
@@ -198,7 +204,7 @@ export default function SearchForm({ onSubmit }: SearchFormProps) {
                     type="submit"
                     className="w-full h-[45px] bg-[#69c6ba] hover:bg-[#c66995] text-white font-medium text-[0.85rem]"
                   >
-                    CHECK AVAILABILITY
+                    {t('checkAvailability')}
                   </Button>
                 </div>
               </div>

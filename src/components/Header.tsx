@@ -1,34 +1,36 @@
 // src/components/Header.tsx
-'use client'
+'use client';
 
-import { useState, useEffect } from 'react'
-import { Menu, X, ChevronDown } from 'lucide-react'
-import { Button, Sheet, SheetContent, SheetTrigger } from '@/components/ui' // ← LIMPO!
+import { useState, useEffect } from 'react';
+import { Menu, X, ChevronDown } from 'lucide-react';
+import { Button, Sheet, SheetContent, SheetTrigger } from '@/components/ui';
+import { useTranslation } from '@/hooks/useTranslation';
 
 const NAV_LINKS = [
-  { label: 'Home', href: '#home' },
-  { label: 'Top Destinations', href: '#destinations' },
-  { label: 'Recommended Places', href: '#recommended' },
-  { label: 'Contact Us', href: '#contact' },
-]
+  { key: 'home', href: '#home' },
+  { key: 'topDestinations', href: '#destinations' },
+  { key: 'recommendedPlaces', href: '#recommended' },
+  { key: 'contactUs', href: '#contact' },
+] as const;
 
 export default function Header() {
-  const [scrolled, setScrolled] = useState(false)
-  const [mobileOpen, setMobileOpen] = useState(false)
+  const { t } = useTranslation();
+  const [scrolled, setScrolled] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 50)
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
+    const handleScroll = () => setScrolled(window.scrollY > 50);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const headerClasses = `
     fixed inset-x-0 top-0 z-50 transition-all duration-300
     ${scrolled ? 'h-16 bg-white shadow-md' : 'h-20 bg-transparent'}
-  `
+  `;
 
-  const logoSize = scrolled ? 'text-2xl' : 'text-3xl'
-  const iconSize = scrolled ? 'w-8 h-8' : 'w-10 h-10'
+  const logoSize = scrolled ? 'text-2xl' : 'text-3xl';
+  const iconSize = scrolled ? 'w-8 h-8' : 'w-10 h-10';
 
   return (
     <header className={headerClasses}>
@@ -45,7 +47,7 @@ export default function Header() {
 
         {/* Desktop Nav */}
         <nav className="hidden md:flex items-center gap-8">
-          {NAV_LINKS.map(({ label, href }) => (
+          {NAV_LINKS.map(({ key, href }) => (
             <a
               key={href}
               href={href}
@@ -55,7 +57,7 @@ export default function Header() {
                   : 'text-white hover:text-highlight'
               }`}
             >
-              {label}
+              {t(key)}
             </a>
           ))}
         </nav>
@@ -69,14 +71,14 @@ export default function Header() {
           </SheetTrigger>
           <SheetContent side="right" className="w-64 p-6">
             <nav className="flex flex-col gap-4 mt-8">
-              {NAV_LINKS.map(({ label, href }) => (
+              {NAV_LINKS.map(({ key, href }) => (
                 <a
                   key={href}
                   href={href}
                   onClick={() => setMobileOpen(false)}
                   className="text-lg font-medium text-gray-800 hover:text-highlight transition-colors"
                 >
-                  {label}
+                  {t(key)}
                 </a>
               ))}
             </nav>
@@ -84,5 +86,5 @@ export default function Header() {
         </Sheet>
       </div>
     </header>
-  )
+  );
 }
