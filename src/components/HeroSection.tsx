@@ -2,8 +2,9 @@
 'use client';
 
 import { ArrowDown } from 'lucide-react';
-import { Button } from '@/components/ui';
+import { Button } from '@/components/ui/button';
 import { useTranslation } from '@/hooks/useTranslation';
+import rioBanner from '@/assets/images/rio-banner.jpg'; // ← IMPORT CORRETO
 
 export default function HeroSection() {
   const { t } = useTranslation();
@@ -11,9 +12,7 @@ export default function HeroSection() {
   return (
     <section
       className="relative flex min-h-screen items-center justify-center bg-cover bg-center bg-no-repeat"
-      style={{
-        backgroundImage: `url('https://placehold.co/1920x1080?text=Journey+Banner')`,
-      }}
+      style={{ backgroundImage: `url(${rioBanner})` }} // ← USANDO IMPORT
     >
       {/* Overlay escuro */}
       <div className="absolute inset-0 bg-black/60" />

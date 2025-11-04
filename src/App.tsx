@@ -1,4 +1,5 @@
-// src/App.tsx
+'use client';
+
 import { useState, useEffect } from 'react';
 import Header from '@/components/Header';
 import HeroSection from '@/components/HeroSection';
@@ -9,7 +10,7 @@ import RecommendedPlaces from '@/components/RecommendedPlaces';
 import ContactMapSection from '@/components/ContactMapSection';
 import Footer from '@/components/Footer';
 
-function App() {
+export default function App() {
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
@@ -19,17 +20,17 @@ function App() {
   }, []);
 
   return (
-    <div className="font-sans antialiased text-[#333] bg-white">
+    <div className="font-sans antialiased text-[#333] bg-white min-h-screen">
       <Header isScrolled={isScrolled} />
-      <HeroSection />
-      <SearchForm />
-      <AboutSection />
-      <DestinationsTabs />
-      <RecommendedPlaces />
-      <ContactMapSection />
+      <main>
+        <HeroSection />
+        <SearchForm />
+        <AboutSection />
+        <DestinationsTabs />
+        <RecommendedPlaces />
+        <ContactMapSection />
+      </main>
       <Footer />
     </div>
   );
 }
-
-export default App;
