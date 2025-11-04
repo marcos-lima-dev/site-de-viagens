@@ -1,0 +1,7 @@
+@import "tailwindcss";
+
+/* Cores customizadas do projeto */
+@theme {
+  --color-primary: #69c6ba;
+  --color-highlight: #c66995;
+}
