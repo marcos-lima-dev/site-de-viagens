@@ -1,10 +1,11 @@
-// App.tsx (atualizado)
 import Header from '@/components/Header';
 import HeroSection from '@/components/HeroSection';
 import SearchForm from '@/components/SearchForm';
 import AboutSection from '@/components/AboutSection';
 import DestinationsTabs from '@/components/DestinationsTabs';
-import RecommendedPlaces from '@/components/RecommendedPlaces'; // ← novo
+import RecommendedPlaces from '@/components/RecommendedPlaces';
+import ContactMapSection from '@/components/ContactMapSection';
+import Footer from '@/components/Footer';
 import { useState, useEffect } from 'react';
 
 function App() {
@@ -28,6 +29,8 @@ function App() {
       <AboutSection />
       <DestinationsTabs />
       <RecommendedPlaces />
+      <ContactMapSection />
+      <Footer />
     </div>
   );
 }
