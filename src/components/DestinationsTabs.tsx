@@ -14,13 +14,13 @@ export default function DestinationsTabs() {
   const [activeTab, setActiveTab] = useState('asia');
 
   const continents: Continent[] = [
-    { id: 'north-america', key: 'northAmerica', image: 'https://i.imgur.com/seuIdDa.png' },
-    { id: 'south-america', key: 'southAmerica', image: 'https://i.imgur.com/seuIdDa.png' },
-    { id: 'europe', key: 'europe', image: 'https://i.imgur.com/seuIdDa.png' },
-    { id: 'asia', key: 'asia', image: 'https://i.imgur.com/seuIdDa.png' },
-    { id: 'africa', key: 'africa', image: 'https://i.imgur.com/seuIdDa.png' },
-    { id: 'australia', key: 'australia', image: 'https://i.imgur.com/seuIdDa.png' },
-    { id: 'antartica', key: 'antartica', image: 'https://i.imgur.com/seuIdDa.png' },
+    { id: 'north-america', key: 'northAmerica', image: 'https://i.imgur.com/uSdWJGF.png' },
+    { id: 'south-america', key: 'southAmerica', image: 'https://i.imgur.com/uSdWJGF.png' }, // Precisamos da imagem específica do sul
+    { id: 'europe', key: 'europe', image: 'https://i.imgur.com/H0Uy5VN.png' },
+    { id: 'asia', key: 'asia', image: 'https://i.imgur.com/U2rwFmK.png' },
+    { id: 'africa', key: 'africa', image: 'https://i.imgur.com/G3RvUG7.png' },
+    { id: 'australia', key: 'australia', image: 'https://i.imgur.com/Ohv68oL.png' },
+    { id: 'antartica', key: 'antartica', image: 'https://i.imgur.com/iDaPVV1.png' },
   ];
 
   const activeContinent = continents.find(c => c.id === activeTab);
