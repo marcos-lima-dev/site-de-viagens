@@ -48,7 +48,7 @@ export default function DestinationsTabs() {
                 <img
                   src={getImagePath(continent.id)}
                   alt={t(continent.key)}
-                  className="w-8 h-8 object-contain"
+                  className="w-12 h-12 object-contain"
                   onError={(e) => {
                     const target = e.target as HTMLImageElement;
                     target.style.display = 'none';
