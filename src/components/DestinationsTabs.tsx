@@ -2,18 +2,10 @@
 import { useState } from 'react';
 import { useTranslation } from '@/hooks/useTranslation';
 import { Button } from '@/components/ui/button';
-import northAmericaImg from '@/assets/images/north-america.png';
-import southAmericaImg from '@/assets/images/south-america.png';
-import europeImg from '@/assets/images/europe.png';
-import asiaImg from '@/assets/images/asia.png';
-import africaImg from '@/assets/images/africa.png';
-import australiaImg from '@/assets/images/australia.png';
-import antarticaImg from '@/assets/images/antartica.png';
 
 interface Continent {
   id: string;
   key: keyof typeof ptBR;
-  image: string;
 }
 
 export default function DestinationsTabs() {
@@ -21,16 +13,18 @@ export default function DestinationsTabs() {
   const [activeTab, setActiveTab] = useState('asia');
 
   const continents: Continent[] = [
-    { id: 'north-america', key: 'northAmerica', image: northAmericaImg },
-    { id: 'south-america', key: 'southAmerica', image: southAmericaImg },
-    { id: 'europe', key: 'europe', image: europeImg },
-    { id: 'asia', key: 'asia', image: asiaImg },
-    { id: 'africa', key: 'africa', image: africaImg },
-    { id: 'australia', key: 'australia', image: australiaImg },
-    { id: 'antartica', key: 'antartica', image: antarticaImg },
+    { id: 'north-america', key: 'northAmerica' },
+    { id: 'south-america', key: 'southAmerica' },
+    { id: 'europe', key: 'europe' },
+    { id: 'asia', key: 'asia' },
+    { id: 'africa', key: 'africa' },
+    { id: 'australia', key: 'australia' },
+    { id: 'antartica', key: 'antartica' },
   ];
 
   const activeContinent = continents.find(c => c.id === activeTab);
+
+  const getImagePath = (id: string) => `/src/assets/images/${id}.png`;
 
   return (
     <section className="py-12 bg-[#69c6ba]">
@@ -52,9 +46,21 @@ export default function DestinationsTabs() {
             >
               <div className="w-16 h-16 mb-2 rounded-full overflow-hidden bg-white/20 p-1">
                 <img
-                  src={continent.image}
+                  src={getImagePath(continent.id)}
                   alt={t(continent.key)}
                   className="w-full h-full object-cover rounded-full"
+                  onError={(e) => {
+                    const target = e.target as HTMLImageElement;
+                    target.onerror = null; // Evita loop infinito se fallback também falhar
+                    target.style.display = 'none'; // Oculta a imagem em caso de erro
+                    const parent = target.parentElement;
+                    if (parent) {
+                      parent.style.display = 'flex';
+                      parent.style.alignItems = 'center';
+                      parent.style.justifyContent = 'center';
+                      parent.textContent = continent.id.charAt(0).toUpperCase(); // Primeira letra do continente
+                    }
+                  }}
                 />
               </div>
               <span>{t(continent.key).toUpperCase()}</span>
