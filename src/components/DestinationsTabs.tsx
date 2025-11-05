@@ -50,11 +50,11 @@ export default function DestinationsTabs() {
                 }
               `}
             >
-              <div className="w-16 h-16 mb-2 rounded-full overflow-hidden bg-blue-200 p-1 border-2 border-red-500 flex items-center justify-center">
+              <div className="w-16 h-16 mb-2 overflow-hidden bg-blue-200 p-1 border-2 border-red-500 flex items-center justify-center">
                 <img
                   src={getImagePath(continent.id)}
                   alt={t(continent.key)}
-                  className="w-3/4 h-3/4 object-contain rounded-full bg-yellow-200"
+                  className="w-3/4 h-3/4 object-contain bg-yellow-200"
                   onError={(e) => {
                     // Se a imagem falhar, exibe um placeholder de texto
                     const target = e.target as HTMLImageElement;
