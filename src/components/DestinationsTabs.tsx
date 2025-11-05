@@ -42,11 +42,12 @@ export default function DestinationsTabs() {
                 }
               `}
             >
-              <div className="w-16 h-16 mb-2 rounded-full overflow-hidden bg-white/20 p-1">
+              <div className="relative w-16 h-16 mb-2">
                 <img
                   src={`/images/${continent.id}.png`}
                   alt={t(continent.key)}
-                  className="w-full h-full object-cover rounded-full"
+                  className="w-12 h-12 mx-auto"
+                  style={{ display: 'block' }}
                 />
               </div>
               <span>{t(continent.key).toUpperCase()}</span>
