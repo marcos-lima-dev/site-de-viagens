@@ -53,7 +53,7 @@ export default function DestinationsTabs() {
             >
               <div className="relative w-20 h-20 mb-1">
                 <img
-                  src={`${import.meta.env.BASE_URL}images/${continent.id}.png`}
+                  src={process.env.PUBLIC_URL + `/images/${continent.id}.png`}
                   alt={t(continent.key)}
                   className="w-14 h-14 mx-auto rounded-full object-cover"
                   style={{ display: 'block' }}
