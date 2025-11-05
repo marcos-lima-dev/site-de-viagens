@@ -44,11 +44,11 @@ export default function DestinationsTabs() {
                 }
               `}
             >
-              <div className="w-16 h-16 mb-2 rounded-full overflow-hidden bg-white/20 p-1">
+              <div className="w-16 h-16 mb-2 rounded-full overflow-hidden bg-blue-200 p-1 border-2 border-red-500">
                 <img
                   src={getImagePath(continent.id)}
                   alt={t(continent.key)}
-                  className="w-full h-full object-cover rounded-full"
+                  className="w-full h-full object-cover rounded-full bg-yellow-200"
                 />
               </div>
               <span>{t(continent.key).toUpperCase()}</span>
