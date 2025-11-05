@@ -59,12 +59,28 @@ export default function DestinationsTabs() {
                 width: '100%',
               }}
             >
-              <div className="relative w-20 h-20 mb-1">
+              <div className="relative w-20 h-20 mb-1 flex items-center justify-center">
                 <img
                   src={continent.image}
                   alt={t(continent.key)}
-                  className="w-14 h-14 mx-auto rounded-full object-cover"
+                  className="w-14 h-14 rounded-full object-cover"
                   style={{ display: 'block' }}
+                  onError={(e) => {
+                    // Exibe a primeira letra do continente se a imagem falhar
+                    e.currentTarget.style.display = 'none';
+                    const parent = e.currentTarget.parentElement;
+                    if (parent) {
+                      parent.innerHTML = `
+                        <div class="flex items-center justify-center w-full h-full bg-gray-200 text-gray-800 rounded-full font-bold">
+                          ${continent.id.charAt(0).toUpperCase()}
+                        </div>
+                      `;
+                    }
+                  }}
+                  onLoad={(e) => {
+                    // Para debug: mostra mensagem no console quando imagem carregar
+                    console.log(`Imagem carregada: ${continent.id}`);
+                  }}
                 />
               </div>
               <span>{t(continent.key).toUpperCase()}</span>
