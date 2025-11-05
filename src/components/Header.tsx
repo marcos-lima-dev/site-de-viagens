@@ -13,16 +13,15 @@ const NAV_LINKS = [
   { key: 'contactUs', href: '#contact' },
 ] as const;
 
-export default function Header() {
+interface HeaderProps {
+  isScrolled?: boolean;
+}
+
+export default function Header({ isScrolled }: HeaderProps) {
   const { t } = useTranslation();
-  const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
 
-  useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 50);
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  const scrolled = isScrolled || false;
 
   const headerClasses = `
     fixed inset-x-0 top-0 z-50 transition-all duration-300
