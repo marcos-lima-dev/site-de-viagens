@@ -36,12 +36,20 @@ export default function DestinationsTabs() {
               className={`
                 flex flex-col items-center justify-center p-4 flex-1 min-w-[120px] h-auto
                 text-white text-xs font-semibold transition-all duration-300 rounded-none
+                border-0
                 ${activeTab === continent.id 
                   ? 'bg-[#c66995] hover:bg-[#d07aa6] border-2 border-white' 
                   : 'bg-transparent hover:bg-[#7fd1c5] hover:text-white hover:rounded-none'
                 }
                 data-[state=open]:bg-[#c66995] data-[state=open]:text-white
               `}
+              style={{
+                justifyContent: 'center',
+                alignItems: 'center',
+                display: 'flex',
+                flexDirection: 'column',
+                width: '100%',
+              }}
             >
               <div className="relative w-20 h-20 mb-1">
                 <img
