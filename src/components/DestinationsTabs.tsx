@@ -24,7 +24,7 @@ export default function DestinationsTabs() {
 
   const activeContinent = continents.find(c => c.id === activeTab);
 
-  const getImagePath = (id: string) => `/src/assets/images/${id}.png`;
+  const getImagePath = (id: string) => `/images/${id}.png`;
 
   return (
     <section className="py-12 bg-[#69c6ba]">
