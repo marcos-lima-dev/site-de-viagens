@@ -23,6 +23,7 @@ export const ptBR = {
 
   // About
   yourJourney: 'SUA VIAGEM É NOSSA PRIORIDADE',
+  aboutText: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
   continueExplore: 'CONTINUAR EXPLORANDO',
 
   // Contact
