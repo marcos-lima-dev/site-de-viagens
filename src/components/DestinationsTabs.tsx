@@ -1,7 +1,6 @@
 // src/components/DestinationsTabs.tsx
 import { useState } from 'react';
 import { useTranslation } from '@/hooks/useTranslation';
-import { Button } from '@/components/ui/button';
 
 interface Continent {
   id: string;
@@ -29,16 +28,15 @@ export default function DestinationsTabs() {
       <div className="container mx-auto px-4">
         <div className="flex flex-wrap justify-center gap-2 md:gap-0">
           {continents.map((continent) => (
-            <Button
+            <div
               key={continent.id}
-              variant="ghost"
               onClick={() => setActiveTab(continent.id)}
               className={`
-                flex flex-col items-center justify-center p-4 flex-1 min-w-[120px]
+                flex flex-col items-center justify-center p-4 flex-1 min-w-[120px] cursor-pointer
                 text-white text-xs font-semibold transition-all duration-300 rounded-none
                 ${activeTab === continent.id 
                   ? 'bg-[#c66995] hover:bg-[#d07aa6] border-2 border-white' 
-                  : 'bg-transparent hover:bg-[#7fd1c5] hover:text-white hover:rounded-none'
+                  : 'bg-transparent hover:bg-[#7fd1c5] hover:text-white'
                 }
               `}
             >
@@ -51,7 +49,7 @@ export default function DestinationsTabs() {
                 />
               </div>
               <span>{t(continent.key).toUpperCase()}</span>
-            </Button>
+            </div>
           ))}
         </div>
 
@@ -63,9 +61,9 @@ export default function DestinationsTabs() {
           <p className="text-[#787676] mb-6">
             {t('discoverDestinations')} {t(activeContinent?.key || 'asia')}.
           </p>
-          <Button className="bg-[#69c6ba] hover:bg-[#c66995] text-white">
+          <button className="bg-[#69c6ba] hover:bg-[#c66995] text-white px-6 py-3 rounded-lg">
             {t('viewAllPlaces')}
-          </Button>
+          </button>
         </div>
       </div>
     </section>
