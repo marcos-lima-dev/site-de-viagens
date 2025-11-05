@@ -44,22 +44,21 @@ export default function DestinationsTabs() {
                 }
               `}
             >
-              <div className="w-16 h-16 mb-2 rounded-full overflow-hidden bg-white/20 p-1">
+              <div className="w-16 h-16 mb-2 rounded-full overflow-hidden bg-white/20 p-1 flex items-center justify-center">
                 <img
                   src={getImagePath(continent.id)}
                   alt={t(continent.key)}
-                  className="w-full h-full object-cover rounded-full"
+                  className="w-8 h-8 object-contain"
                   onError={(e) => {
                     const target = e.target as HTMLImageElement;
-                    target.onerror = null; // Evita loop infinito se fallback também falhar
-                    target.style.display = 'none'; // Oculta a imagem em caso de erro
+                    target.style.display = 'none';
                     const parent = target.parentElement;
                     if (parent) {
-                      parent.style.display = 'flex';
-                      parent.style.alignItems = 'center';
-                      parent.style.justifyContent = 'center';
-                      parent.textContent = continent.id.charAt(0).toUpperCase(); // Primeira letra do continente
+                      parent.innerHTML = `<div class="text-white text-xs font-bold">${continent.id.charAt(0).toUpperCase()}</div>`;
                     }
+                  }}
+                  onLoad={(e) => {
+                    console.log(`Imagem carregada: ${getImagePath(continent.id)}`);
                   }}
                 />
               </div>
