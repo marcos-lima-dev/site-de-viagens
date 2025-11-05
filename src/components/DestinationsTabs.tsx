@@ -42,11 +42,11 @@ export default function DestinationsTabs() {
                 }
               `}
             >
-              <div className="relative w-16 h-16 mb-1">
+              <div className="relative w-20 h-20 mb-1">
                 <img
                   src={`/images/${continent.id}.png`}
                   alt={t(continent.key)}
-                  className="w-12 h-12 mx-auto rounded-full"
+                  className="w-14 h-14 mx-auto rounded-full object-cover"
                   style={{ display: 'block' }}
                 />
               </div>
