@@ -24,14 +24,6 @@ export default function DestinationsTabs() {
 
   const activeContinent = continents.find(c => c.id === activeTab);
 
-  // Vamos tentar usar uma imagem de teste
-  const getImagePath = (id: string) => {
-    // Primeiro tenta a imagem local
-    const localPath = `/images/${id}.png`;
-    // Se a imagem local não funcionar, usamos uma imagem de teste
-    return localPath;
-  };
-
   return (
     <section className="py-12 bg-[#69c6ba]">
       <div className="container mx-auto px-4">
@@ -50,20 +42,11 @@ export default function DestinationsTabs() {
                 }
               `}
             >
-              <div className="w-16 h-16 mb-2 rounded-full overflow-hidden bg-white/20 p-1 flex items-center justify-center">
+              <div className="w-16 h-16 mb-2 rounded-full overflow-hidden bg-white/20 p-1">
                 <img
-                  src={getImagePath(continent.id)}
+                  src={`/images/${continent.id}.png`}
                   alt={t(continent.key)}
-                  className="w-12 h-12 object-cover rounded-full"
-                  onError={(e) => {
-                    // Se a imagem falhar, exibe um placeholder de texto
-                    const target = e.target as HTMLImageElement;
-                    target.style.display = 'none';
-                    const parent = target.parentElement;
-                    if (parent) {
-                      parent.innerHTML = `<div class="text-center text-xs font-bold text-white">${continent.id.charAt(0).toUpperCase()}</div>`;
-                    }
-                  }}
+                  className="w-full h-full object-cover rounded-full"
                 />
               </div>
               <span>{t(continent.key).toUpperCase()}</span>
