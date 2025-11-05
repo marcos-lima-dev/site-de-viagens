@@ -2,13 +2,6 @@
 import { useState } from 'react';
 import { useTranslation } from '@/hooks/useTranslation';
 import { Button } from '@/components/ui/button';
-import northAmericaImg from '@/assets/images/north-america.png';
-import southAmericaImg from '@/assets/images/south-america.png';
-import europeImg from '@/assets/images/europe.png';
-import asiaImg from '@/assets/images/asia.png';
-import africaImg from '@/assets/images/africa.png';
-import australiaImg from '@/assets/images/australia.png';
-import antarticaImg from '@/assets/images/antartica.png';
 
 interface Continent {
   id: string;
@@ -21,13 +14,13 @@ export default function DestinationsTabs() {
   const [activeTab, setActiveTab] = useState('asia');
 
   const continents: Continent[] = [
-    { id: 'north-america', key: 'northAmerica', image: northAmericaImg },
-    { id: 'south-america', key: 'southAmerica', image: southAmericaImg },
-    { id: 'europe', key: 'europe', image: europeImg },
-    { id: 'asia', key: 'asia', image: asiaImg },
-    { id: 'africa', key: 'africa', image: africaImg },
-    { id: 'australia', key: 'australia', image: australiaImg },
-    { id: 'antartica', key: 'antartica', image: antarticaImg },
+    { id: 'north-america', key: 'northAmerica', image: 'https://i.imgur.com/seuIdDa.png' },
+    { id: 'south-america', key: 'southAmerica', image: 'https://i.imgur.com/seuIdDa.png' },
+    { id: 'europe', key: 'europe', image: 'https://i.imgur.com/seuIdDa.png' },
+    { id: 'asia', key: 'asia', image: 'https://i.imgur.com/seuIdDa.png' },
+    { id: 'africa', key: 'africa', image: 'https://i.imgur.com/seuIdDa.png' },
+    { id: 'australia', key: 'australia', image: 'https://i.imgur.com/seuIdDa.png' },
+    { id: 'antartica', key: 'antartica', image: 'https://i.imgur.com/seuIdDa.png' },
   ];
 
   const activeContinent = continents.find(c => c.id === activeTab);
