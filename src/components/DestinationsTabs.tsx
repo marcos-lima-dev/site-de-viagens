@@ -50,18 +50,18 @@ export default function DestinationsTabs() {
                 }
               `}
             >
-              <div className="w-16 h-16 mb-2 overflow-hidden bg-blue-200 p-1 border-2 border-red-500 flex items-center justify-center">
+              <div className="w-16 h-16 mb-2 rounded-full overflow-hidden bg-white/20 p-1 flex items-center justify-center">
                 <img
                   src={getImagePath(continent.id)}
                   alt={t(continent.key)}
-                  className="w-3/4 h-3/4 object-contain bg-yellow-200"
+                  className="w-12 h-12 object-cover rounded-full"
                   onError={(e) => {
                     // Se a imagem falhar, exibe um placeholder de texto
                     const target = e.target as HTMLImageElement;
                     target.style.display = 'none';
                     const parent = target.parentElement;
                     if (parent) {
-                      parent.innerHTML = `<div class="text-center text-xs font-bold">${continent.id.charAt(0).toUpperCase()}</div>`;
+                      parent.innerHTML = `<div class="text-center text-xs font-bold text-white">${continent.id.charAt(0).toUpperCase()}</div>`;
                     }
                   }}
                 />
