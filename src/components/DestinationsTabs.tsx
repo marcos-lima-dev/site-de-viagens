@@ -37,10 +37,10 @@ export default function DestinationsTabs() {
               onClick={() => setActiveTab(continent.id)}
               className={`
                 flex flex-col items-center justify-center p-[30px_25px] flex-1 min-w-[120px]
-                text-white text-xs font-medium transition-all duration-300
+                text-white text-xs font-medium transition-all duration-300 rounded-none
                 ${activeTab === continent.id
-                  ? 'bg-[#c66995] hover:bg-[#d07aa6]'
-                  : 'bg-transparent hover:bg-[#7fd1c5]'
+                  ? 'bg-[#c66995]'
+                  : 'bg-transparent hover:bg-[#7fd1c5] hover:rounded-none'
                 }
               `}
             >
