@@ -44,12 +44,12 @@ export default function DestinationsTabs() {
                 }
               `}
             >
-              <div className="w-16 h-16 mb-2 rounded-full overflow-hidden bg-white/20 p-1 flex items-center justify-center">
+              <div className="w-16 h-16 mb-2 rounded-full overflow-hidden bg-white/20 flex items-center justify-center">
                 <img
                   src={getImagePath(continent.id)}
                   alt={t(continent.key)}
-                  className="max-w-full max-h-full"
-                  style={{ objectFit: 'contain' }}
+                  className="max-w-full max-h-full rounded-full"
+                  style={{ objectFit: 'contain', display: 'block' }}
                   onError={(e) => {
                     const target = e.target as HTMLImageElement;
                     target.style.display = 'none';
