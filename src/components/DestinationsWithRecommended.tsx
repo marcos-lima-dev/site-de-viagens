@@ -313,11 +313,11 @@ export default function DestinationsWithRecommended() {
                 data-[state=open]:bg-[#c66995] data-[state=open]:text-white
               `}
             >
-              <div className="w-16 h-16 mb-2 rounded-full overflow-hidden bg-white/20 flex items-center justify-center">
+              <div className="w-16 h-16 mb-2 rounded-full overflow-hidden bg-white/20 flex items-center justify-center relative">
                 <img
                   src={`/images/${continent.id}.png`}
                   alt={t(continent.key)}
-                  className="w-full h-full object-cover rounded-full"
+                  className="absolute w-16 h-16 object-cover rounded-full"
                   onError={(e) => {
                     const target = e.target as HTMLImageElement;
                     target.style.display = 'none';
