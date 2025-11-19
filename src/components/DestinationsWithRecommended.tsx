@@ -317,8 +317,7 @@ export default function DestinationsWithRecommended() {
                 <img
                   src={`/images/${continent.id}.png`}
                   alt={t(continent.key)}
-                  className="max-w-full max-h-full rounded-full"
-                  style={{ objectFit: 'contain', display: 'block' }}
+                  className="w-full h-full object-cover rounded-full"
                   onError={(e) => {
                     const target = e.target as HTMLImageElement;
                     target.style.display = 'none';
