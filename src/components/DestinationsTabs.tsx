@@ -6,7 +6,6 @@ import { Button } from '@/components/ui/button';
 interface Continent {
   id: string;
   key: keyof typeof ptBR;
-  image: string;
 }
 
 export default function DestinationsTabs() {
@@ -14,16 +13,18 @@ export default function DestinationsTabs() {
   const [activeTab, setActiveTab] = useState('asia');
 
   const continents: Continent[] = [
-    { id: 'north-america', key: 'northAmerica', image: 'https://i.imgur.com/uSdWJGF.png' },
-    { id: 'south-america', key: 'southAmerica', image: 'https://i.imgur.com/uSdWJGF.png' }, // Precisamos da imagem específica do sul
-    { id: 'europe', key: 'europe', image: 'https://i.imgur.com/H0Uy5VN.png' },
-    { id: 'asia', key: 'asia', image: 'https://i.imgur.com/U2rwFmK.png' },
-    { id: 'africa', key: 'africa', image: 'https://i.imgur.com/G3RvUG7.png' },
-    { id: 'australia', key: 'australia', image: 'https://i.imgur.com/Ohv68oL.png' },
-    { id: 'antartica', key: 'antartica', image: 'https://i.imgur.com/iDaPVV1.png' },
+    { id: 'north-america', key: 'northAmerica' },
+    { id: 'south-america', key: 'southAmerica' },
+    { id: 'europe', key: 'europe' },
+    { id: 'asia', key: 'asia' },
+    { id: 'africa', key: 'africa' },
+    { id: 'australia', key: 'australia' },
+    { id: 'antartica', key: 'antartica' },
   ];
 
   const activeContinent = continents.find(c => c.id === activeTab);
+
+  const getImagePath = (id: string) => `/images/${id}.png`;
 
   return (
     <section className="py-12 bg-[#69c6ba]">
@@ -35,44 +36,30 @@ export default function DestinationsTabs() {
               variant="ghost"
               onClick={() => setActiveTab(continent.id)}
               className={`
-                flex flex-col items-center justify-center p-4 flex-1 min-w-[120px] h-auto
-                text-white text-xs font-semibold transition-all duration-300 rounded-none
-                border-0
+                flex flex-col items-center justify-center p-[30px_25px] flex-1 min-w-[120px]
+                text-white text-xs font-medium transition-all duration-300
                 ${activeTab === continent.id
-                  ? 'bg-[#c66995] hover:bg-[#d07aa6] border-2 border-white'
-                  : 'bg-transparent hover:bg-[#7fd1c5] hover:text-white hover:rounded-none'
+                  ? 'bg-[#c66995] hover:bg-[#d07aa6]'
+                  : 'bg-transparent hover:bg-[#7fd1c5]'
                 }
-                data-[state=open]:bg-[#c66995] data-[state=open]:text-white
               `}
-              style={{
-                justifyContent: 'center',
-                alignItems: 'center',
-                display: 'flex',
-                flexDirection: 'column',
-                width: '100%',
-              }}
             >
-              <div className="relative w-20 h-20 mb-1 flex items-center justify-center">
+              <div className="w-16 h-16 mb-2 rounded-full overflow-hidden bg-white/20 p-1 flex items-center justify-center">
                 <img
-                  src={continent.image}
+                  src={getImagePath(continent.id)}
                   alt={t(continent.key)}
-                  className="max-w-full max-h-full rounded-full"
-                  style={{ objectFit: 'contain', display: 'block' }}
+                  className="max-w-full max-h-full"
+                  style={{ objectFit: 'contain' }}
                   onError={(e) => {
-                    // Exibe a primeira letra do continente se a imagem falhar
-                    e.currentTarget.style.display = 'none';
-                    const parent = e.currentTarget.parentElement;
+                    const target = e.target as HTMLImageElement;
+                    target.style.display = 'none';
+                    const parent = target.parentElement;
                     if (parent) {
-                      parent.innerHTML = `
-                        <div class="flex items-center justify-center w-full h-full bg-gray-200 text-gray-800 rounded-full font-bold">
-                          ${continent.id.charAt(0).toUpperCase()}
-                        </div>
-                      `;
+                      parent.innerHTML = `<div class="text-white text-xs font-bold">${continent.id.charAt(0).toUpperCase()}</div>`;
                     }
                   }}
                   onLoad={(e) => {
-                    // Para debug: mostra mensagem no console quando imagem carregar
-                    console.log(`Imagem carregada: ${continent.id}`);
+                    console.log(`Imagem carregada: ${getImagePath(continent.id)}`);
                   }}
                 />
               </div>
