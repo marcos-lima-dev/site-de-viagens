@@ -44,7 +44,7 @@ export default function DestinationsTabs() {
                 }
               `}
             >
-              <div className="w-16 h-16 mb-4 rounded-full overflow-hidden bg-white/20 flex items-center justify-center group hover:bg-white/30 transition-all duration-300">
+              <div className="w-16 h-16 pb-4 rounded-full overflow-hidden bg-white/20 flex items-center justify-center group hover:bg-white/30 transition-all duration-300">
                 <img
                   src={getImagePath(continent.id)}
                   alt={t(continent.key)}
