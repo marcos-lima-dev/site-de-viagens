@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import Header from '@/components/Header';
 import HeroSection from '@/components/HeroSection';
 import AboutSection from '@/components/AboutSection';
+import DestinationsShowcase from '@/components/DestinationsShowcase'; 
 import DestinationsTabs from '@/components/DestinationsTabs';
 import RecommendedPlaces from '@/components/RecommendedPlaces';
 import ContactMapSection from '@/components/ContactMapSection';
@@ -24,6 +25,7 @@ export default function App() {
       <main>
         <HeroSection />
         <AboutSection />
+        <DestinationsShowcase /> {/* ← ADICIONE AQUI */}
         <DestinationsTabs />
         <RecommendedPlaces />
         <ContactMapSection />

@@ -38,8 +38,8 @@ export default function DestinationsTabs() {
                 flex flex-col items-center justify-center p-4 flex-1 min-w-[120px] h-auto
                 text-white text-xs font-semibold transition-all duration-300 rounded-none
                 border-0
-                ${activeTab === continent.id 
-                  ? 'bg-[#c66995] hover:bg-[#d07aa6] border-2 border-white' 
+                ${activeTab === continent.id
+                  ? 'bg-[#c66995] hover:bg-[#d07aa6] border-2 border-white'
                   : 'bg-transparent hover:bg-[#7fd1c5] hover:text-white hover:rounded-none'
                 }
                 data-[state=open]:bg-[#c66995] data-[state=open]:text-white
@@ -56,8 +56,8 @@ export default function DestinationsTabs() {
                 <img
                   src={continent.image}
                   alt={t(continent.key)}
-                  className="w-14 h-14 rounded-full object-cover"
-                  style={{ display: 'block' }}
+                  className="max-w-full max-h-full rounded-full"
+                  style={{ objectFit: 'contain', display: 'block' }}
                   onError={(e) => {
                     // Exibe a primeira letra do continente se a imagem falhar
                     e.currentTarget.style.display = 'none';

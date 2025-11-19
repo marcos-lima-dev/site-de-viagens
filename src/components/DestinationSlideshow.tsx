@@ -1,7 +1,6 @@
 // src/components/DestinationSlideshow.tsx
 import { useState } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-import { Button } from '@/components/ui/button';
 import { useTranslation } from '@/hooks/useTranslation';
 
 interface Destination {
@@ -38,84 +37,62 @@ export default function DestinationSlideshow({
   const bgClass = bgColor === 'teal' ? 'bg-[#69c6ba]' : 'bg-[#c66995]';
 
   return (
-    <section className="py-8 md:py-12 bg-white">
-      <div className="container mx-auto px-4">
-        <div className={`grid grid-cols-1 lg:grid-cols-2 gap-0 max-w-7xl mx-auto ${
-          reverse ? 'lg:grid-flow-dense' : ''
-        }`}>
-          <div className={`relative h-[350px] md:h-[450px] lg:h-[500px] overflow-hidden ${
-            reverse ? 'lg:col-start-2' : ''
-          }`}>
-            <img
-              src={currentDestination.image}
-              alt={currentDestination.title}
-              className="w-full h-full object-cover transition-opacity duration-500"
-            />
+    <section className="relative bg-white overflow-hidden w-full">
+      <div className={`flex flex-col lg:flex-row ${reverse ? 'lg:flex-row-reverse' : ''} w-full`}>
+        {/* Slideshow de Imagens */}
+        <div className="relative w-full lg:w-1/2 h-[400px] lg:h-[600px]">
+          <img
+            src={currentDestination.image}
+            alt={currentDestination.title}
+            className="w-full h-full object-cover"
+          />
 
-            <div className="absolute inset-0 flex items-center justify-between px-4">
-              <Button
-                onClick={prevSlide}
-                variant="outline"
-                size="icon"
-                className="rounded-full bg-white/90 hover:bg-white shadow-lg"
-              >
-                <ChevronLeft className="h-5 w-5" />
-              </Button>
-              <Button
-                variant="outline"
-                className={`${
-                  bgColor === 'teal' 
-                    ? 'bg-white text-[#69c6ba] hover:bg-gray-100' 
-                    : 'bg-white text-[#c66995] hover:bg-gray-100'
-                } border-white uppercase tracking-wide text-sm`}
-              >
-                {t('continueReading')}
-              </Button>
-              <Button
-                onClick={nextSlide}
-                variant="outline"
-                size="icon"
-                className="rounded-full bg-white/90 hover:bg-white shadow-lg"
-              >
-                <ChevronRight className="h-5 w-5" />
-              </Button>
-            </div>
+          {/* Controles - Estilo Original */}
+          <button
+            onClick={prevSlide}
+            className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 flex items-center justify-center bg-[#666] hover:bg-[#69c6ba] text-white transition-colors duration-300 z-10"
+            aria-label="Previous"
+          >
+            <ChevronLeft className="w-6 h-6" />
+          </button>
+          
+          <button
+            onClick={nextSlide}
+            className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 flex items-center justify-center bg-[#666] hover:bg-[#69c6ba] text-white transition-colors duration-300 z-10"
+            aria-label="Next"
+          >
+            <ChevronRight className="w-6 h-6" />
+          </button>
 
-            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
-              {destinations.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => setCurrentSlide(index)}
-                  className={`w-2 h-2 rounded-full transition-all ${
-                    index === currentSlide ? 'bg-white w-8' : 'bg-white/50'
-                  }`}
-                  aria-label={`Go to slide ${index + 1}`}
-                />
-              ))}
-            </div>
+          {/* Indicadores - Estilo Original */}
+          <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-3 z-10">
+            {destinations.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => setCurrentSlide(index)}
+                className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                  index === currentSlide 
+                    ? 'bg-white scale-110' 
+                    : 'bg-white/60 hover:bg-white/80'
+                }`}
+                aria-label={`Ir para slide ${index + 1}`}
+              />
+            ))}
           </div>
+        </div>
 
-          <div className={`${bgClass} text-white p-8 md:p-10 lg:p-14 flex flex-col justify-center ${
-            reverse ? 'lg:col-start-1' : ''
-          }`}>
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4 md:mb-6">
+        {/* Descrição - Estilo Original */}
+        <div className={`${bgClass} w-full lg:w-1/2 flex items-center`}>
+          <div className="px-8 py-12 lg:px-16 lg:py-20 text-white max-w-2xl">
+            <h2 className="text-3xl lg:text-4xl font-light mb-6 leading-tight">
               {currentDestination.title}
             </h2>
-            <p className="text-base md:text-lg mb-6 md:mb-8 leading-relaxed opacity-95">
+            <p className="text-base lg:text-lg font-light leading-relaxed mb-8 opacity-95">
               {currentDestination.description}
             </p>
-            <div>
-              <Button
-                variant="outline"
-                className={`${
-                  bgColor === 'teal' 
-                    ? 'bg-white text-[#69c6ba] hover:bg-gray-100' 
-                    : 'bg-white text-[#c66995] hover:bg-gray-100'
-                } border-white uppercase tracking-wide text-sm`}
-              >
-                {t('continueReading')}
-              </Button>
-            </div>
+            <button className="inline-block px-6 py-3 bg-white text-[#333] text-sm font-medium uppercase tracking-wider hover:bg-gray-100 transition-colors duration-300">
+              {t('continueReading')}
+            </button>
           </div>
         </div>
       </div>
