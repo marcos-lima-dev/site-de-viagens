@@ -42,6 +42,7 @@ export default function DestinationsTabs() {
                   ? 'bg-[#c66995]'
                   : 'bg-transparent hover:bg-[#7fd1c5] hover:rounded-none'
                 }
+                hover:opacity-100 hover:shadow-md
               `}
             >
               <div className="w-16 h-16 mb-2 rounded-full overflow-hidden bg-white/20 flex items-center justify-center">

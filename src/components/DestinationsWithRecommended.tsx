@@ -311,6 +311,7 @@ export default function DestinationsWithRecommended() {
                   : 'bg-transparent hover:bg-[#7fd1c5] hover:text-white hover:rounded-none'
                 }
                 data-[state=open]:bg-[#c66995] data-[state=open]:text-white
+                hover:opacity-100 hover:shadow-md
               `}
             >
               <div className="w-16 h-16 mb-2 rounded-full overflow-hidden bg-white/20 flex items-center justify-center relative">
