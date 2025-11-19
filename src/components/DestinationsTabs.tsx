@@ -36,7 +36,7 @@ export default function DestinationsTabs() {
               variant="ghost"
               onClick={() => setActiveTab(continent.id)}
               className={`
-                flex flex-col items-center justify-center p-[36px_25px] flex-1 min-w-[120px]
+                flex flex-col items-center justify-center gap-2 p-[36px_25px] flex-1 min-w-[120px]
                 text-white text-xs font-medium transition-all duration-300 rounded-none
                 ${activeTab === continent.id
                   ? 'bg-[#c66995]'
@@ -44,7 +44,7 @@ export default function DestinationsTabs() {
                 }
               `}
             >
-              <div className="w-16 h-16 pb-4 rounded-full overflow-hidden bg-white/20 flex items-center justify-center group hover:bg-white/30 transition-all duration-300">
+              <div className="w-16 h-16 rounded-full overflow-hidden bg-white/20 flex items-center justify-center group hover:bg-white/30 transition-all duration-300">
                 <img
                   src={getImagePath(continent.id)}
                   alt={t(continent.key)}
