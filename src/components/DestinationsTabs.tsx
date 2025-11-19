@@ -36,13 +36,13 @@ export default function DestinationsTabs() {
               variant="ghost"
               onClick={() => setActiveTab(continent.id)}
               className={`
-                flex flex-col items-center justify-center p-[30px_25px] flex-1 min-w-[120px]
+                flex flex-col items-center justify-center p-[34px_27px] flex-1 min-w-[126px]
                 text-white text-xs font-medium transition-all duration-300 rounded-none
                 ${activeTab === continent.id
                   ? 'bg-[#c66995]'
                   : 'bg-transparent hover:bg-[#7fd1c5] hover:rounded-none'
                 }
-                hover:opacity-100 hover:shadow-md
+                hover:opacity-100 hover:shadow-lg
               `}
             >
               <div className="w-16 h-16 mb-2 rounded-full overflow-hidden bg-white/20 flex items-center justify-center">

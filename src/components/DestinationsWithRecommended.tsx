@@ -304,14 +304,14 @@ export default function DestinationsWithRecommended() {
               variant="ghost"
               onClick={() => setActiveTab(continent.id)}
               className={`
-                flex flex-col items-center justify-center p-4 flex-1 min-w-[120px]
+                flex flex-col items-center justify-center p-[34px_27px] flex-1 min-w-[126px]
                 text-white text-xs font-semibold transition-all duration-300 rounded-none
                 ${activeTab === continent.id
                   ? 'bg-[#c66995] border-2 border-white'
                   : 'bg-transparent hover:bg-[#7fd1c5] hover:text-white hover:rounded-none'
                 }
                 data-[state=open]:bg-[#c66995] data-[state=open]:text-white
-                hover:opacity-100 hover:shadow-md
+                hover:opacity-100 hover:shadow-lg
               `}
             >
               <div className="w-16 h-16 mb-2 rounded-full overflow-hidden bg-white/20 flex items-center justify-center relative">
