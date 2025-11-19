@@ -304,7 +304,7 @@ export default function DestinationsWithRecommended() {
               variant="ghost"
               onClick={() => setActiveTab(continent.id)}
               className={`
-                flex flex-col items-center justify-center p-[30px_25px] flex-1 min-w-[120px]
+                flex flex-col items-center justify-center p-[36px_25px] flex-1 min-w-[120px]
                 text-white text-xs font-semibold transition-all duration-300 rounded-none
                 ${activeTab === continent.id
                   ? 'bg-[#c66995] border-2 border-white'
