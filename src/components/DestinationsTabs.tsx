@@ -36,20 +36,19 @@ export default function DestinationsTabs() {
               variant="ghost"
               onClick={() => setActiveTab(continent.id)}
               className={`
-                flex flex-col items-center justify-center p-[34px_27px] flex-1 min-w-[126px]
+                flex flex-col items-center justify-center p-[30px_25px] flex-1 min-w-[120px]
                 text-white text-xs font-medium transition-all duration-300 rounded-none
                 ${activeTab === continent.id
                   ? 'bg-[#c66995]'
-                  : 'bg-transparent hover:bg-[#7fd1c5] hover:rounded-none'
+                  : 'bg-transparent'
                 }
-                hover:opacity-100 hover:shadow-lg
               `}
             >
-              <div className="w-16 h-16 mb-2 rounded-full overflow-hidden bg-white/20 flex items-center justify-center">
+              <div className="w-16 h-16 mb-2 rounded-full overflow-hidden bg-white/20 flex items-center justify-center group hover:bg-white/30 transition-all duration-300">
                 <img
                   src={getImagePath(continent.id)}
                   alt={t(continent.key)}
-                  className="absolute w-16 h-16 object-cover rounded-full"
+                  className="absolute w-16 h-16 object-cover rounded-full group-hover:opacity-90 transition-opacity duration-300"
                   onError={(e) => {
                     const target = e.target as HTMLImageElement;
                     target.style.display = 'none';
