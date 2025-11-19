@@ -313,7 +313,7 @@ export default function DestinationsWithRecommended() {
                 data-[state=open]:bg-[#c66995] data-[state=open]:text-white
               `}
             >
-              <div className="w-16 h-16 mb-2 rounded-full overflow-hidden bg-white/20 flex items-center justify-center group hover:bg-white/30 transition-all duration-300 relative">
+              <div className="w-16 h-16 mb-4 rounded-full overflow-hidden bg-white/20 flex items-center justify-center group hover:bg-white/30 transition-all duration-300 relative">
                 <img
                   src={`/images/${continent.id}.png`}
                   alt={t(continent.key)}
